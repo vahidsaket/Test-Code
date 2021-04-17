@@ -1,0 +1,12 @@
+  public IActionResult DownloadAttachment(string attachment)
+        {
+            var path = Path.Combine(
+               Directory.GetCurrentDirectory(), "wwwroot\\UploadFile\\Journal", attachment);
+
+            //var http = _httpContextAccessor.HttpContext.Request.Scheme;
+            //var host = _httpContextAccessor.HttpContext.Request.Host;
+            //var url = $"{http}://{host}/uploadfile/journal/{attachment}";
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(path);
+            return File(fileBytes, "application/x-msdownload", attachment);
+        }
